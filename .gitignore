@@ -1,3 +1,4 @@
 .vagrant/
 vendor/
 *.log
+html/
