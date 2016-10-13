@@ -31,5 +31,8 @@ $app->pipeDispatchMiddleware();
 // Routes
 $app->get('/', Action\HomePageAction::class, 'home');
 $app->get('/api/ping', Action\PingAction::class, 'api.ping');
+$app->get('/speaker[/{id:\d+}]', Action\SpeakerAction::class, 'speaker');
+$app->get('/talk[/{id:\d+}]', Action\TalkAction::class, 'talk');
+$app->get('/schedule', Action\ScheduleAction::class, 'schedule');
 
 $app->run();
