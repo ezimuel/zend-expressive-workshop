@@ -18,15 +18,14 @@ apt-get install -y nginx git curl php7.0 php7.0-cli php7.0-fpm php7.0-sqlite3 ph
 
 # Configure Nginx
 echo "server {
-    listen 80 default_server;
-    listen [::]:80 default_server ipv6only=on;
+    listen 8080;
 
-    root /var/www/public;
+    root /home/ubuntu/zend-expressive/public;
     server_name ubuntu-xenial;
 
     # Logs
-    access_log /var/www/log/access_log;
-    error_log /var/www/log/error_log;
+    access_log /home/ubuntu/zend-expressive/log/access_log;
+    error_log /home/ubuntu/zend-expressive/log/error_log;
 
     index index.php index.html index.htm;
 
@@ -43,10 +42,7 @@ echo "server {
     }
 }" > /etc/nginx/sites-available/zend-expressive
 chmod 644 /etc/nginx/sites-available/zend-expressive
-rm /etc/nginx/sites-enabled/default
-ln -s /etc/nginx/sites-available/zend-expressive /etc/nginx/sites-enabled/default
-touch /var/www/log/access_log
-touch /var/www/log/error_log
+ln -s /etc/nginx/sites-available/zend-expressive /etc/nginx/sites-enabled/zend-expressive
 service nginx restart
 
 if [ -e /usr/local/bin/composer ]; then
@@ -58,8 +54,8 @@ SCRIPT
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = 'ubuntu/xenial64'
-  config.vm.network "forwarded_port", guest: 80, host: 8080
-  config.vm.synced_folder '.', '/var/www'
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
+  config.vm.synced_folder '.', '/home/ubuntu/zend-expressive'
   config.vm.provision 'shell', inline: $script
 
   config.vm.provider "virtualbox" do |vb|
