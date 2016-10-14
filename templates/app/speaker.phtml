@@ -1,0 +1,12 @@
+<?php $this->layout('layout::default', ['title' => 'Speaker']) ?>
+
+<div class="row">
+  <h1><?php echo $speaker->name ?></h1>
+  <p><?php echo $speaker->bio ?></p>
+</div>
+<div class="row">
+  <h2>Talks:</h2>
+  <?php foreach ($speaker->talks as $talk): ?>
+    <p><a href="<?php echo $this->url('talk', [ 'id' => $talk->id ]) ?>"><?php echo $talk->title ?></a> (<?php echo $talk->type ?>), <?php echo $talk->day ?> at <?php echo $talk->startTime ?></p>
+  <?php endforeach; ?>
+</div>

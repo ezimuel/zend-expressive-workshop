@@ -1,0 +1,13 @@
+<?php $this->layout('layout::default', ['title' => 'Speakers']) ?>
+
+<div class="row">
+  <h1>Speakers</h1>
+</div>
+<?php foreach($speakers as $speaker): ?>
+<div class="row">
+  <h2><a href="<?php echo $this->url('speaker', ['id' => $speaker->id]) ?>"><?php echo $speaker->name ?></a></h2>
+</div>
+<div class="row">
+  <p><?php echo $speaker->bio ?></p>
+</div>
+<?php endforeach; ?>
