@@ -27,7 +27,16 @@ using the following command:
 git clone https://github.com/ezimuel/zend-expressive-workshop
 ```
 
-Move inside the `zend-expressive-workshop` folder and execute Vagrant with the
+Move inside the `zend-expressive-workshop` folder and execute [composer](https://getcomposer.org/)
+to install the vendor libraries for zend-expressive:
+
+```bash
+composer install
+```
+
+If you don't have composer, you can install from [here](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx).
+
+After the execution of composer you can start up the Vagrant box with the
 following command:
 
 ```bash
