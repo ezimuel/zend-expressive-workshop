@@ -14,7 +14,7 @@ echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
 
 # Install dependencies
 apt-get update
-apt-get install -y nginx git curl php7.0 php7.0-cli php7.0-fpm php7.0-sqlite3 php7.0-pdo
+apt-get install -y nginx git curl php7.0 php7.0-cli php7.0-fpm php7.0-sqlite3 php7.0-pdo php7.0-xml php7.0-zip
 
 # Configure Nginx
 echo "server {
@@ -50,6 +50,8 @@ if [ -e /usr/local/bin/composer ]; then
 else
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 fi
+
+su ubuntu -c "cd /home/ubuntu/zend-expressive && composer install --optimize-autoloader"
 SCRIPT
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
