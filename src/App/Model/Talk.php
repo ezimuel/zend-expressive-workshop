@@ -5,6 +5,7 @@ use Zend\Db\Adapter\AdapterInterface;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\Db\Sql\Sql;
+use Zend\Db\Sql\Select;
 
 class Talk
 {
@@ -31,7 +32,7 @@ class Talk
         $select = $sql->select();
         $select->from('speakers')
                ->join('talks_speakers', 'talks_speakers.speaker_id = speakers.id')
-               ->where(array('talks_speakers.talk_id' => $id));
+               ->where(['talks_speakers.talk_id' => $id]);
         $stm    = $sql->prepareStatementForSqlObject($select);
         $result = $stm->execute();
 
@@ -45,19 +46,8 @@ class Talk
 
     public function getTalkByDate($day)
     {
-        // get the speakers of the talk
-        $sql    = new Sql($this->table->adapter);
-        $select = $sql->select();
-        $select->from('talks')
-               ->where(array('talks.day' => $day))
-               ->order('talks.start_time');
-        $stm    = $sql->prepareStatementForSqlObject($select);
-        $result = $stm->execute();
-
-        $resultSet = new HydratingResultSet();
-        $resultSet->setObjectPrototype(new TalkEntity());
-        $resultSet->initialize($result);
-
-        return $resultSet;
+        return $this->table->select(function (Select $select) use ($day) {
+          $select->where(['day' => $day])->order('start_time');
+        });
     }
 }
