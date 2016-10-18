@@ -42,4 +42,11 @@ class Talk
 
       return $talk;
     }
+
+    public function getTalkByDate($day)
+    {
+        return $this->table->select(function (Select $select) use ($day) {
+          $select->where(['day' => $day])->order('start_time');
+        });
+    }
 }
