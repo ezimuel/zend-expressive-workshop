@@ -13,7 +13,7 @@ class Talk
     public function __construct(AdapterInterface $adapter)
     {
         $resultSet = new HydratingResultSet();
-        $resultSet->setObjectPrototype(new SpeakerEntity());
+        $resultSet->setObjectPrototype(new TalkEntity());
         $this->table = new TableGateway('talks', $adapter, null, $resultSet);
     }
 
