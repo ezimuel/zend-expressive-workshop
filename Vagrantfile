@@ -14,7 +14,7 @@ echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
 
 # Install dependencies
 apt-get update
-apt-get install -y nginx git curl php7.0 php7.0-cli php7.0-fpm php7.0-sqlite3 php7.0-pdo php7.0-xml php7.0-zip
+apt-get install -y nginx git curl php7.0 php7.0-cli php7.0-fpm php7.0-sqlite3 php7.0-pdo
 
 # Configure Nginx
 echo "server {
@@ -51,7 +51,6 @@ else
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 fi
 
-su ubuntu -c "cd /home/ubuntu/zend-expressive && composer install --optimize-autoloader"
 SCRIPT
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -62,6 +61,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--memory", "1024"]
-    vb.customize ["modifyvm", :id, "--name", "Zend Expressive Workshop - Ubuntu 16.04"]
+    vb.customize ["modifyvm", :id, "--name", "zend-expressive-workshop"]
   end
 end
