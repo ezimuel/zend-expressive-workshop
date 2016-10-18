@@ -1,0 +1,13 @@
+<?php $this->layout('layout::default', ['title' => 'Talks']) ?>
+
+<div class="row">
+  <h1>Schedule</h1>
+</div>
+<?php foreach($schedule as $day => $talks): ?>
+<div class="row">
+  <h2><?php echo $day ?></h2>
+  <?php foreach($talks as $talk): ?>
+    <h4><a href="<?php echo $this->url('talk', [ 'id' => $talk->id ]) ?>"><?php echo $talk->title ?></a>, from <?php echo $talk->startTime ?> to <?php echo $talk->endTime ?> in room <?php echo $talk->room ?></h4>
+  <?php endforeach; ?>
+</div>
+<?php endforeach; ?>

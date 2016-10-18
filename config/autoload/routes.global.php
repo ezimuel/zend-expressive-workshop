@@ -10,6 +10,7 @@ return [
             App\Action\HomePageAction::class => App\Action\HomePageFactory::class,
             App\Action\SpeakerAction::class  => App\Action\SpeakerFactory::class,
             App\Action\TalkAction::class     => App\Action\TalkFactory::class,
+            App\Action\ScheduleAction::class => App\Action\ScheduleFactory::class,
         ],
     ],
 ];
